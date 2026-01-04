@@ -1,0 +1,37 @@
+server:
+  port: 5001
+
+spring:
+  application:
+    name: USER-SERVICE
+
+  jpa:
+    hibernate:
+      ddl-auto: none  # Disable automatic schema updates to prevent database connection attempts
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/task_user_service
+    username: root
+    password: 1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    fetch-registry: false  # Don't fetch registry from Eureka
+    register-with-eureka: false  # Don't register with Eureka
+    serviceUrl:
+      defaultZone: http://localhost:8070/eureka/
+
+# Actuator Configuration
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always
+      probes:
+        enabled: true
